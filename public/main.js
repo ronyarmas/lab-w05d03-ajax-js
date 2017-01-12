@@ -8,7 +8,7 @@ $('#ready').click(function() {
     data.forEach(function(obj) {
       console.log('ran');
       var challenge = $('<li>');
-      challenge.text(obj.body);
+      $('<a>').attr('href', '/challenges/' + obj.id).text('challenge ' + obj.id + " " + obj.body).appendTo(challenge);
       challenge.appendTo(html);
     })
     $('#challenges').append(html);
@@ -16,17 +16,25 @@ $('#ready').click(function() {
     var $moar = $('<div>').attr('id', 'moar').appendTo('.wrapper');
     $('#next').click(function() {
       $.get('/challenges?next=true', function(data) {
-        var html = $('<ol>');
+        // var html = $('<ol>').attr('id', 'challenges');
+        var links = $('<ol>').attr('id', 'links');
         data.forEach(function(obj) {
-        var challenge = $('<li>');
+        var link = $('<li>').attr('class', 'link');
+        // var challenge = $('<li>');
         if (!obj.body.match(/\s/g)){
-          challenge.text(decode(obj.body));
+          // challenge.text(decode(obj.body));
+          $('<a>').attr('href', '/challenge/' + obj.id).text('challenge ' + obj.id + " " + decode(obj.body)).appendTo(link);
+
         } else {
-        challenge.text(obj.body);
+        // challenge.text(obj.body);
+          $('<a>').attr('href', '/challenge/' + obj.id).text('challenge ' + obj.id + " " + obj.body).appendTo(link);
+
         }
-        challenge.appendTo(html);
+        // challenge.appendTo(html);
+        link.appendTo(links);
+        links.appendTo('#moar');
       })
-        html.appendTo('#moar');
+        // html.appendTo('#moar');
         console.log($('li').length);
         if($('li').length === 15){
           var $secret = $('<button>').attr('id', 'secret').text('secret').appendTo('.wrapper');
@@ -54,6 +62,7 @@ $('#ready').click(function() {
                 console.log('response', data);
                 var decodedMsg = atob("SW4gPGNvZGU+cHVibGljL21haW4uanM8L2NvZGU+IHVwZGF0ZSA8Y29kZT5yZW5kZXJDaGFsbGVuZ2U8L2NvZGU+IHRvIG91dHB1dCA8Y29kZT4mbHQ7YSBocmVmPSIvY2hhbGxlbmdlcy9baWRdIiZndDtbQ2hhbGxlbmdlXSZsdDsvYSZndDs8L2NvZGU+")
               })
+
             })
       }
     })

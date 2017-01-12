@@ -38,10 +38,11 @@ app.get('/challenges', function(req, res) {
   }
 })
 
-// app.get('https://mighty-caverns-93139.herokuapp.com/help', function(req, res) {
-//   // res.redirect('https://mighty-caverns-93139.herokuapp.com/help');
-//   console.log(req.body)
-// })
+app.get('/challenges/:id', function(req, res) {
+  // req.params
+  console.log(req.params.id);
+  res.send('test');
+})
 
 
 
