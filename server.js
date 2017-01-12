@@ -41,7 +41,7 @@ app.get('/challenges', function(req, res) {
 app.get('/challenges/:id', function(req, res) {
   // req.params
   console.log(req.params.id);
-  res.send('test');
+  res.send(challenges[req.params.id-1].body);
 })
 
 

@@ -23,11 +23,11 @@ $('#ready').click(function() {
         // var challenge = $('<li>');
         if (!obj.body.match(/\s/g)){
           // challenge.text(decode(obj.body));
-          $('<a>').attr('href', '/challenge/' + obj.id).text('challenge ' + obj.id + " " + decode(obj.body)).appendTo(link);
+          $('<a>').attr('href', '/challenges/' + obj.id).text('challenge ' + obj.id + " " + decode(obj.body)).appendTo(link);
 
         } else {
         // challenge.text(obj.body);
-          $('<a>').attr('href', '/challenge/' + obj.id).text('challenge ' + obj.id + " " + obj.body).appendTo(link);
+          $('<a>').attr('href', '/challenges/' + obj.id).text('challenge ' + obj.id + " " + obj.body).appendTo(link);
 
         }
         // challenge.appendTo(html);
